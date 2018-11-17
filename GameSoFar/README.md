@@ -1,0 +1,1 @@
+You can play the game of what's coded so far. There are incomplete parts and alot of bug in this build type.
