@@ -1,14 +1,14 @@
 package areaOne.TownOne;
 
 import java.util.Scanner;
-import tools.Tools;
+import tools.*;
 import control.FirstBossFake;
 import control.CreateName;
 
 public class Intro {
-	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name, String[] health) {
+	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name, int[] safeCombo) {
 		CreateName.start(name, input);
-		
+		SaveLoad.load(playerData, isDone, name, safeCombo, input);
 		FirstBossFake.start(input, playerData, name);
 		
 		Tools.clearScreen();
@@ -238,7 +238,7 @@ public class Intro {
 				}
 				break;
 			case "4":
-				Tools.showInv(playerData, name, health);
+				Tools.showInv(playerData, name);
 				break;
 			case "end":
 				System.exit(0);

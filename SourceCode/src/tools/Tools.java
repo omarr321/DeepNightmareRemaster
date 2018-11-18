@@ -74,14 +74,9 @@ public class Tools {
 		return (int) (Math.random() * range) + min;
 	}
 
-	public static void showInv(int[] playerInfo, String[] name, String[] health) {
+	public static void showInv(int[] playerInfo, String[] name) {
 		fastText(name[0] + "'s Inventory:");
 		fastText("Health: " + playerInfo[0] + "/100");
-//		fastTextN("[");
-//		for(int i = 0; i < health.length; i++) {
-//			fastTextN(health[i]);
-//		}
-//		fastText("]");
 		fastText("Money: " + playerInfo[9]);
 		System.out.println();
 		fastText("/============================================>");

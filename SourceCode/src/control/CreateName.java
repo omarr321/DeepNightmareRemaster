@@ -169,5 +169,7 @@ public class CreateName {
 		}
 		
 		name[0] = username;
+		username = username.replace(' ', '_');
+		name[3] = username;
 	}
 }

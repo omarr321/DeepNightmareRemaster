@@ -7,7 +7,7 @@ import tools.Tools;
 public class Controller {
 	public static void main(String[] args) {
 		Scanner input = new Scanner(System.in);
-		String[] name = {"", "Elite Armor", "Elite Sword"};
+		String[] name = {"", "Elite Armor", "Elite Sword", "", "", ""};
 		String[] health = new String[33];
 		for (int i = 0; i < health.length; i++) {
 			health[i] = "=";
@@ -19,7 +19,7 @@ public class Controller {
 		int[] safeCombo = {Tools.random(0, 9), Tools.random(0, 9), Tools.random(0, 9), Tools.random(0, 9), Tools.random(0, 9), Tools.random(0, 9), Tools.random(0, 9), Tools.random(0, 9), Tools.random(0, 9)};
 		
 		SplashScreen.start(input);
-		ControllerA1.start(playerData, input, isDone, name, health, safeCombo);
+		ControllerA1.start(playerData, input, isDone, name, safeCombo);
 		input.close();
 	}
 }

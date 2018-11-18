@@ -4,7 +4,7 @@ import java.util.Scanner;
 import tools.Tools;
 
 public class Build_ruin {
-	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name, String[] health) {
+	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name) {
 		String action;
 		while(true) {
 			System.out.println();
@@ -90,7 +90,7 @@ public class Build_ruin {
 			case "3":
 				return;
 			case "4":
-				Tools.showInv(playerData, name, health);
+				Tools.showInv(playerData, name);
 				break;
 			case "end":
 				System.exit(0);

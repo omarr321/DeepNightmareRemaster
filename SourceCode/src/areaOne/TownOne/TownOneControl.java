@@ -4,10 +4,10 @@ import java.util.Scanner;
 import tools.Tools;
 
 public class TownOneControl {
-	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name, String[] health, int[] safeCombo) {
+	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name, int[] safeCombo) {
 		String action;
 		if (isDone[0] == false) {
-			Intro.start(playerData, input, isDone, name, health);
+			Intro.start(playerData, input, isDone, name, safeCombo);
 			Tools.clearScreen();
 			Tools.slowText("As you walk thought the door, you are blinded by sunlight. As you");
 			Tools.slowText("get use to the sunlight, you turn around and notice the house you");
@@ -51,16 +51,16 @@ public class TownOneControl {
 			Tools.clearScreen();
 			switch (action) {
 			case "1":
-				Build_hospital.start(playerData, input, isDone, name, health, safeCombo);
+				Build_hospital.start(playerData, input, isDone, name, safeCombo);
 				break;
 			case "2":
-				Build_hut.start(playerData, input, isDone, name, health, safeCombo);
+				Build_hut.start(playerData, input, isDone, name, safeCombo);
 				break;
 			case "3":
-				Build_ruin.start(playerData, input, isDone, name, health);
+				Build_ruin.start(playerData, input, isDone, name);
 				break;
 			case "4":
-				Portal.start(playerData, input, isDone, name, health);
+				Portal.start(playerData, input, isDone, name);
 				break;
 			case "5":
 				if (isDone[1] == true) {
@@ -72,7 +72,7 @@ public class TownOneControl {
 				}
 				break;
 			case "6":
-				Tools.showInv(playerData, name, health);
+				Tools.showInv(playerData, name);
 				break;
 			case "end":
 				System.exit(0);
