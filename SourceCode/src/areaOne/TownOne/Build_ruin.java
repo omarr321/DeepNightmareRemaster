@@ -2,9 +2,10 @@ package areaOne.TownOne;
 
 import java.util.Scanner;
 import tools.Tools;
+import tools.Player;
 
 public class Build_ruin {
-	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name) {
+	public static void start(Player player, Scanner input) {
 		String action;
 		while(true) {
 			System.out.println();
@@ -13,7 +14,7 @@ public class Build_ruin {
 			Tools.slowText("It looks like it was burned in a fire. Ash cover the walls");
 			Tools.slowText("and floor. There is only one room still standing but is");
 			Tools.slowTextN("still mostly ruin. You see some debris");
-			if (isDone[4] == true) {
+			if (player.getIsDone(4) == true) {
 				Tools.slowText(" on the ground.");
 			} else {
 				Tools.slowText(" and something laying");
@@ -36,19 +37,19 @@ public class Build_ruin {
 			Tools.clearScreen();
 			switch(action) {
 			case "1":
-				if (isDone[4] == false) {
+				if (player.getIsDone(4) == false) {
 				Tools.slowText("As you take a closer look, you see some coins.");
 				Tools.slowText("You pick up the coins.");
 				Tools.slowText("+5 coins added to inventory");
-				playerData[9] = playerData[9] + 5;
+				player.addCoin(5);
 				Tools.sleep(1);
-				isDone[4] = true;
+				player.setIsDone(true, 4);
 				} else {
 					Tools.slowText("You see nothing else on the ground.");
 				}
 				break;
 			case "2":
-				if (isDone[5] == false) {
+				if (player.getIsDone(5) == false) {
 					boolean goodAction = false;
 					while (goodAction == false) {
 
@@ -67,11 +68,11 @@ public class Build_ruin {
 						switch (action) {
 						case "1":
 							Tools.slowText("You got a broken wooden sword.");
-							name[2] = "Broken wooden sword";
-							playerData[4] = 5;
-							playerData[5] = 10;
+							
+							player.setSword("Broken Wooden Sword", 5, 10);
+		
 							goodAction = true;
-							isDone[5] = true;
+							player.setIsDone(true, 5);
 							break;
 						case "2":
 							Tools.slowText("You leave the sword for now.");
@@ -90,7 +91,7 @@ public class Build_ruin {
 			case "3":
 				return;
 			case "4":
-				Tools.showInv(playerData, name);
+				player.showInv();
 				break;
 			case "end":
 				System.exit(0);

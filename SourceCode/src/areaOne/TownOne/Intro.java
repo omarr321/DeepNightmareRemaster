@@ -1,15 +1,11 @@
 package areaOne.TownOne;
 
 import java.util.Scanner;
-import tools.*;
-import control.FirstBossFake;
-import control.CreateName;
+import tools.Tools;
+import tools.Player;
 
 public class Intro {
-	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name, int[] safeCombo) {
-		CreateName.start(name, input);
-		SaveLoad.load(playerData, isDone, name, safeCombo, input);
-		FirstBossFake.start(input, playerData, name);
+	public static void start(Player player, Scanner input) {
 		
 		Tools.clearScreen();
 		Tools.slowText("You wake up, freezing and dazed. You look around the room you are in. The room");
@@ -35,7 +31,7 @@ public class Intro {
 			Tools.clearScreen();
 			switch (action) {
 			case "1":
-				if (isDone[0] == false) {
+				if (player.getIsDone(0) == false) {
 					Tools.slowText("You search the cabinet and find a letter!");
 					System.out.println();
 					boolean vaildIn = false;
@@ -51,7 +47,7 @@ public class Intro {
 						switch (action) {
 						case "1":
 							Tools.slowText("The letter reads as followed:");
-							Tools.slowText("Hello " + name[0] + ",");
+							Tools.slowText("Hello " + player.getName() + ",");
 							System.out.println();
 							Tools.slowText("   You might be wondering why you are here and where I am. I will answer both in");
 							Tools.slowText("due time but first something really important. You are in grave danger. The town");
@@ -69,7 +65,7 @@ public class Intro {
 							System.out.println();
 							Tools.slowText("P.S. I hidden the key under the rug.");
 							vaildIn = true;
-							isDone[0] = true;
+							player.setIsDone(true, 0);
 							rug = "Lift rug";
 							break;
 						case "2":
@@ -87,13 +83,13 @@ public class Intro {
 				}
 				break;
 			case "2":
-				if (isDone[1] == false) {
-					if (isDone[0] == true) {
+				if (player.getIsDone(1) == false) {
+					if (player.getIsDone(0) == true) {
 						Tools.slowText("You lift the rug up and find a key!");
 						Tools.slowText("+1 key added to inventory.");
 						Tools.sleep(1);
-					playerData[7] = playerData[7] + 1;
-					isDone[1] = true;
+					player.addKey(1);
+					player.setIsDone(true, 1);
 				} else {
 					Tools.slowText("This option is locked. Try doing another action to unlock it.");
 					}
@@ -103,12 +99,13 @@ public class Intro {
 				break;
 			case "3":
 				if (broken == false) {
-				if (playerData[7] > 0) {
+				if (player.getKey() > 0) {
 					Tools.slowText("You unlock the door and leave");
 					Tools.slowText("-1 key from your inventory.");
-					playerData[7] = playerData[7] - 1;
-					isDone[0] = true;
-					isDone[1] = false;
+					player.subKey(1);
+					
+					player.setIsDone(true, 0);
+					player.setIsDone(false, 1);
 					Tools.sleep(1);
 					return;
 				} else {
@@ -238,7 +235,7 @@ public class Intro {
 				}
 				break;
 			case "4":
-				Tools.showInv(playerData, name);
+				player.showInv();
 				break;
 			case "end":
 				System.exit(0);

@@ -2,12 +2,13 @@ package areaOne.TownOne;
 
 import java.util.Scanner;
 import tools.Tools;
+import tools.Player;
 
 public class TownOneControl {
-	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name, int[] safeCombo) {
+	public static void start(Player player, Scanner input) {
 		String action;
-		if (isDone[0] == false) {
-			Intro.start(playerData, input, isDone, name, safeCombo);
+		if (player.getIsDone(0) == false) {
+			Intro.start(player, input);
 			Tools.clearScreen();
 			Tools.slowText("As you walk thought the door, you are blinded by sunlight. As you");
 			Tools.slowText("get use to the sunlight, you turn around and notice the house you");
@@ -37,7 +38,7 @@ public class TownOneControl {
 			Tools.slowText("1: Go to hosptal");
 			Tools.slowText("2: Go to hut");
 			Tools.slowText("3: Go to ruins");
-			if (isDone[2] == true || isDone[1] == true) {
+			if (player.getIsDone(1) == true || player.getIsDone(2) == true) {
 				Tools.slowText("4: Go to portal");
 			} else {
 				Tools.slowText("4: Go to rock arch");
@@ -51,19 +52,19 @@ public class TownOneControl {
 			Tools.clearScreen();
 			switch (action) {
 			case "1":
-				Build_hospital.start(playerData, input, isDone, name, safeCombo);
+				Build_hospital.start(player, input);
 				break;
 			case "2":
-				Build_hut.start(playerData, input, isDone, name, safeCombo);
+				Build_hut.start(player, input);
 				break;
 			case "3":
-				Build_ruin.start(playerData, input, isDone, name);
+				Build_ruin.start(player, input);
 				break;
 			case "4":
-				Portal.start(playerData, input, isDone, name);
+				Portal.start(player, input);
 				break;
 			case "5":
-				if (isDone[1] == true) {
+				if (player.getIsDone(1) == true) {
 					Tools.slowText("You leave the town, hoping to destory the evil once and for all.");
 					return;
 				} else {
@@ -72,7 +73,7 @@ public class TownOneControl {
 				}
 				break;
 			case "6":
-				Tools.showInv(playerData, name);
+				player.showInv();
 				break;
 			case "end":
 				System.exit(0);

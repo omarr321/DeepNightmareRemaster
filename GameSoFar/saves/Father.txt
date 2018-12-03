@@ -1,0 +1,6 @@
+100 10 10 10 50000 100000 40000 0 80000 0 
+false
+0
+false false false false false false false false false false false 
+4 5 3 2 8 8 3 2 6 
+Father Elite_Armor Elite_Sword 

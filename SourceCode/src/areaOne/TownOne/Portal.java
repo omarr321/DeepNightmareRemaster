@@ -2,20 +2,21 @@ package areaOne.TownOne;
 
 import java.util.Scanner;
 import tools.Tools;
+import tools.Player;
 
 public class Portal {
-	public static void start(int[] playerData, Scanner input, boolean[] isDone, String[] name) {
+	public static void start(Player player, Scanner input) {
 		String action;
 		String enter = "[Locked]";
 
-		if (isDone[1] == true) {
+		if (player.getIsDone(1) == true) {
 			Tools.slowText("The poral is No more. Just a bunch of rockes on the ground.");
 		} else {
 
 			while (true) {
-				if (isDone[2] == true) {
+				if (player.getIsDone(2) == true) {
 					enter = "Read spell";
-				} else if (isDone[3] == true) {
+				} else if (player.getIsDone(3) == true) {
 					enter = "Go thoght portal";
 				}
 				Tools.slowText("You look at the arch of rocks. The stones are engraved with odd marks.");
@@ -37,17 +38,17 @@ public class Portal {
 					Tools.slowText("As you look you feel uneasy so you stop.");
 					break;
 				case "2":
-					if (isDone[2] == true) {
+					if (player.getIsDone(2) == true) {
 						Tools.slowText("You: dnammoc ym no nepo lliw uoY !latroP");
 						Tools.slowText("As you say the spell, the ground starts to shake and the lights start");
 						Tools.slowText("to glow bright and bright. The wind picks up and the red light from");
 						Tools.slowText("the stone start to get pulled toward the middle of the arc and form a");
 						Tools.slowText("bright red ball and you get fling back as the balls exspoldn in bright");
 						Tools.slowText("light. When you recover, you see a red portal has opened up and you");
-						Tools.slowText("that where you need to go.");
-						isDone[2] = false;
-						isDone[3] = true;
-					} else if (isDone[3] == true) {
+						Tools.slowText("get a urge that is where you need to go.");
+						player.setIsDone(false, 2);
+						player.setIsDone(true, 3);
+					} else if (player.getIsDone(3) == true) {
 						Tools.slowText("Are you sure you want to enter?");
 						System.out.println();
 						Tools.slowText("1: Yes");
@@ -73,7 +74,7 @@ public class Portal {
 				case "3":
 					return;
 				case "4":
-					Tools.showInv(playerData, name);
+					player.showInv();
 					break;
 				case "end":
 					System.exit(0);
